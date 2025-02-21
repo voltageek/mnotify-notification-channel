@@ -1,8 +1,8 @@
 <?php
 
-namespace Illuminate\Notifications\Tests\Feature;
+namespace Cactus\Notifications\Tests\Feature;
 
-use Illuminate\Notifications\VonageChannelServiceProvider;
+use Cactus\Notifications\MNotifyChannelServiceProvider;
 use Orchestra\Testbench\TestCase;
 
 abstract class FeatureTestCase extends TestCase
@@ -15,6 +15,6 @@ abstract class FeatureTestCase extends TestCase
      */
     protected function getPackageProviders($app)
     {
-        return [VonageChannelServiceProvider::class];
+        return [MNotifyChannelServiceProvider::class];
     }
 }

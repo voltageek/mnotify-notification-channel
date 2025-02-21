@@ -1,8 +1,8 @@
 <?php
 
-namespace Illuminate\Notifications\Messages;
+namespace Cactus\Notifications\Messages;
 
-class VonageMessage
+class MNotifyMessage
 {
     /**
      * The message content.
@@ -26,18 +26,12 @@ class VonageMessage
     public $type = 'text';
 
     /**
-     * The custom Vonage client instance.
+     * The custom MNotify client instance.
      *
-     * @var \Vonage\Client|null
+     * @var \MNotify\Client|null
      */
     public $client;
 
-    /**
-     * The client reference.
-     *
-     * @var string
-     */
-    public $clientReference = '';
 
     /**
      * The webhook to be called with status updates.
@@ -95,18 +89,6 @@ class VonageMessage
         return $this;
     }
 
-    /**
-     * Set the client reference (up to 40 characters).
-     *
-     * @param  string  $clientReference
-     * @return $this
-     */
-    public function clientReference($clientReference)
-    {
-        $this->clientReference = $clientReference;
-
-        return $this;
-    }
 
     /**
      * Set the webhook callback URL to update the message status.
@@ -122,9 +104,9 @@ class VonageMessage
     }
 
     /**
-     * Set the Vonage client instance.
+     * Set the MNotify client instance.
      *
-     * @param  \Vonage\Client  $client
+     * @param  \MNotify\Client  $client
      * @return $this
      */
     public function usingClient($client)

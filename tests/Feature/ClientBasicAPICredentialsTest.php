@@ -1,16 +1,16 @@
 <?php
 
-namespace Illuminate\Notifications\Tests\Feature;
+namespace Cactus\Notifications\Tests\Feature;
 
-use Vonage\Client;
-use Vonage\Client\Credentials\Basic;
+use MNotify\Client;
+use MNotify\Client\Credentials\Basic;
 
 class ClientBasicAPICredentialsTest extends FeatureTestCase
 {
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('vonage.api_key', 'my_api_key');
-        $app['config']->set('vonage.api_secret', 'my_secret');
+        $app['config']->set('mnotify.api_key', 'my_api_key');
+        $app['config']->set('mnotify.api_secret', 'my_secret');
     }
 
     public function testClientCreatedWithBasicAPICredentials()

@@ -1,19 +1,18 @@
 {
-    "name": "laravel/vonage-notification-channel",
-    "description": "Vonage Notification Channel for laravel.",
-    "keywords": ["laravel", "notifications", "vonage", "nexmo"],
+    "name": "voltageek/mnotify-notification-channel",
+    "description": "MNotify Notification Channel for laravel.",
+    "keywords": ["laravel", "notifications", "mnotify", "sms"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Taylor Otwell",
-            "email": "taylor@laravel.com"
+            "name": "Kwame Nkansah",
+            "email": "kwame.nkansah@gmail.com"
         }
     ],
     "require": {
         "php": "^8.0",
         "illuminate/notifications": "^8.0|^9.0|^10.0|^11.0|^12.0",
-        "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0",
-        "vonage/client-core": "^4.0.4"
+        "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0"
     },
     "require-dev": {
         "guzzlehttp/guzzle": "^7.2",
@@ -24,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Illuminate\\Notifications\\": "src/"
+            "Cactus\\Notifications\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Illuminate\\Notifications\\Tests\\": "tests/"
+            "Cactus\\Notifications\\Tests\\": "tests/"
         }
     },
     "config": {
@@ -39,15 +38,12 @@
         }
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "3.x-dev"
-        },
         "laravel": {
             "providers": [
-                "Illuminate\\Notifications\\VonageChannelServiceProvider"
+                "Cactus\\Notifications\\MNotifyChannelServiceProvider"
             ],
             "aliases": {
-                "Vonage": "Illuminate\\Notifications\\Facades\\Vonage"
+                "MNotify": "Cactus\\Notifications\\Facades\\MNotify"
             }
         }
     },

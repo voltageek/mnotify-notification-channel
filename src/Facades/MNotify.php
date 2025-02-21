@@ -1,11 +1,11 @@
 <?php
 
-namespace Illuminate\Notifications\Facades;
+namespace Cactus\Notifications\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Vonage\Client;
+use MNotify\Client;
 
-class Vonage extends Facade
+class MNotify extends Facade
 {
     /**
      * Get the registered name of the component.
