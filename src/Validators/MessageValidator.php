@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Cactus\Notifications\Validators;
 
+use Cactus\Notifications\Exceptions\EmptyMessageException;
+use Cactus\Notifications\Exceptions\InvalidCharactersException;
 use Cactus\Notifications\Exceptions\InvalidMessageException;
 
 class MessageValidator
@@ -42,7 +44,7 @@ class MessageValidator
     public static function validate(string $message): string
     {
         if (empty($message)) {
-            throw new InvalidMessageException(
+            throw new EmptyMessageException(
                 'Message cannot be empty',
                 1008
             );
@@ -63,7 +65,7 @@ class MessageValidator
 
         if (!empty($invalidChars)) {
             $invalidCharsStr = implode(', ', array_unique($invalidChars));
-            throw new InvalidMessageException(
+            throw new InvalidCharactersException(
                 "Message contains invalid characters for GSM-7 encoding: {$invalidCharsStr}",
                 1008
             );

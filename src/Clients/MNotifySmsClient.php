@@ -25,7 +25,7 @@ use Cactus\Notifications\Validators\{
 
 class MNotifySmsClient
 {
-    private const BASE_URL = 'https://apps.mnotify.net/smsapi';
+    private const BASE_URL = 'https://api.mnotify.com/api';
     
     private const ERROR_CODES = [
         1000 => 'Message submitted successfully',
@@ -63,11 +63,10 @@ class MNotifySmsClient
         $messageLength = strlen($validatedMessage);
         $messageParts = MessageValidator::calculateMessageParts($messageLength);
 
-        return $this->post('', [
-            'key' => $this->apiKey,
-            'to' => $validatedPhone,
-            'msg' => $escapedMessage,
-            'sender_id' => $this->validateSenderId($senderId),
+        return $this->post('sms/quick', [
+            'recipient' => [$validatedPhone],
+            'message' => $escapedMessage,
+            'sender' => $this->validateSenderId($senderId),
         ]);
     }
 
@@ -126,7 +125,9 @@ class MNotifySmsClient
 
     private function post(string $endpoint, array $data): array
     {
-        $response = $this->http->post($this->url($endpoint), $data);
+        $response = $this->http->withQueryParameters([
+            'key' => $this->apiKey
+        ])->post($this->url($endpoint), $data);
         
         return $this->handleResponse($response);
     }
@@ -156,7 +157,7 @@ class MNotifySmsClient
 
         $code = (int) $data['code'];
 
-        if ($code !== 1000 && $code !== 1007) {
+        if ($code !== 2000) {
             $message = self::ERROR_CODES[$code] ?? 'Unknown error';
             
             throw match($code) {
