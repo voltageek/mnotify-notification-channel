@@ -7,6 +7,7 @@ namespace Cactus\Notifications\Validators;
 use Cactus\Notifications\Exceptions\EmptyMessageException;
 use Cactus\Notifications\Exceptions\InvalidCharactersException;
 use Cactus\Notifications\Exceptions\InvalidMessageException;
+use BenMorel\GsmCharsetConverter\Converter;
 
 class MessageValidator
 {
@@ -49,6 +50,12 @@ class MessageValidator
                 1008
             );
         }
+
+        $converter = new Converter();
+        $utf8 = $converter->cleanUpUtf8String($message, true);
+
+        return $utf8;
+
 
         $messageLength = 0;
         $invalidChars = [];
